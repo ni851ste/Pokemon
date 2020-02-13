@@ -90,7 +90,7 @@ public class Gui implements Observer, KeyListener
         mainFrame.setLayout(new GridLayout(blockHeight, blockWidth));
         mainFrame.addKeyListener(this);
 
-        TwoTouple pos = new TwoTouple(controller.getPosition());
+        TwoTouple<Integer> pos = new TwoTouple<>(controller.getPosition());
         int currWidth = pos.get(0);
         int currHeight = pos.get(1);
         for (int rows = currHeight + (blockHeight / 2); rows >= currHeight - (blockHeight / 2); rows--)

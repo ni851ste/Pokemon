@@ -6,9 +6,9 @@ import ownUtil.TwoTouple;
 
 public class Stage
 {
-    public TwoTouple widthHeight;
+    public TwoTouple<Integer> stageDimensions;
     public StageObjects[][] mapData;
-    public TwoTouple currentPos = null;
+    public TwoTouple<Integer> currentPos;
     public Player player;
 
 
@@ -27,9 +27,9 @@ public class Stage
             throw new IndexNotFittingException();
         }
 
-        this.widthHeight = new TwoTouple(width, height);
+        this.stageDimensions = new TwoTouple<>(width, height);
         this.mapData = new StageObjects[width][height];
-        this.currentPos = new TwoTouple(width / 2, height / 2);
+        this.currentPos = new TwoTouple<>(width / 2, height / 2);
 
         for (int i = 0; i < width; i++)
         {
@@ -80,8 +80,8 @@ public class Stage
      */
     public boolean isMapBlockInBounds(int w, int h)
     {
-        if (w < 0 | w >= widthHeight.get(0) |
-                h < 0 | h >= widthHeight.get(1))
+        if (w < 0 | w >= stageDimensions.get(0) |
+                h < 0 | h >= stageDimensions.get(1))
         {
             return false;
         }

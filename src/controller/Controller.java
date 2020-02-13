@@ -72,7 +72,7 @@ public class Controller extends ownUtil.Subject
         return false;
     }
 
-    public TwoTouple getPosition()
+    public TwoTouple<Integer> getPosition()
     {
         return currPlayer.currentMap.currentPos;
     }
