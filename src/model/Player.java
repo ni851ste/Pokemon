@@ -1,22 +1,22 @@
 package model;
 
-import zmaps.Stage;
-import zmaps.StageObjects;
+import stageComponents.Stage;
+import stageComponents.StageObjects;
 
 public class Player implements StageObjects
 {
-    public Stage currentmap = null;
+    public Stage currentMap = null;
 
     public Player(Stage m1)
     {
-        this.currentmap = m1;
-        this.currentmap.player = this;
+        this.currentMap = m1;
+        this.currentMap.player = this;
     }
 
     public void changeMap(Stage m)
     {
-        this.currentmap.player = null;
-        this.currentmap = m;
+        this.currentMap.player = null;
+        this.currentMap = m;
     }
 
     @Override

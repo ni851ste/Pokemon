@@ -1,4 +1,4 @@
-package zmaps;
+package stageComponents;
 
 public interface StageObjectsPassable extends StageObjects
 {

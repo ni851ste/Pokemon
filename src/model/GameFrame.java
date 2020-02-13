@@ -1,6 +1,6 @@
 package model;
 
-import zmaps.Stage;
+import stageComponents.Stage;
 
 import java.util.TreeMap;
 

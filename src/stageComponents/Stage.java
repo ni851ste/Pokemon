@@ -1,4 +1,4 @@
-package zmaps;
+package stageComponents;
 
 import model.Player;
 import ownUtil.IndexNotFittingException;
@@ -12,7 +12,7 @@ public class Stage
     public Player player;
 
 
-    /*  Contructor for map
+    /**  Contructor for map
             0: width INTEGER > 2
             1: height INTEGER > 2
             throws IndexNotFittingException
@@ -57,7 +57,7 @@ public class Stage
         this.currentPos.change(widthPos, heightPos);
     }
 
-    /*
+    /**
     returns true if block on map is free
     else returns false
     */
@@ -73,7 +73,7 @@ public class Stage
         }
     }
 
-    /*
+    /**
     checks if position is in bounds of map
     returns true if it is
     False if not

@@ -5,9 +5,9 @@ import model.Player;
 import ownUtil.IndexNotFittingException;
 import ownUtil.Observer;
 import ownUtil.TwoTouple;
-import zmaps.Free;
-import zmaps.StageObjects;
-import zmaps.Tree;
+import stageComponents.Free;
+import stageComponents.StageObjects;
+import stageComponents.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,33 +15,30 @@ import java.util.List;
 
 public class Controller extends ownUtil.Subject
 {
-    public enum state
-    {move, menu, talk, fight}
-
     //public enum objects {bounds, free, player, highgrass, tree}
-    private state s;
+    private ControllerState controllerState;
     private GameFrame gF;
     private Player currPlayer;
     private List<Observer> observers = new ArrayList<>();
 
-    public Controller(GameFrame gF, Player p, state s)
+    public Controller(GameFrame gF, Player p)
     {
         this.gF = gF;
         this.currPlayer = p;
-        this.s = s;
+        this.controllerState = ControllerState.MOVE;
     }
 
     public boolean move(char direction)
     {
-        if (!s.equals(state.move))
+        if (!controllerState.equals(ControllerState.MOVE))
         {
             System.out.println("state failure");
             return false;
         }
         int newWidth, newHeight;
 
-        newWidth = currPlayer.currentmap.currentPos.get(0);
-        newHeight = currPlayer.currentmap.currentPos.get(1);
+        newWidth = currPlayer.currentMap.currentPos.get(0);
+        newHeight = currPlayer.currentMap.currentPos.get(1);
 
         switch (direction)
         {
@@ -59,11 +56,11 @@ public class Controller extends ownUtil.Subject
                 break;
         }
 
-        if (currPlayer.currentmap.isMapBlockFree(newWidth, newHeight))
+        if (currPlayer.currentMap.isMapBlockFree(newWidth, newHeight))
         {
             try
             {
-                currPlayer.currentmap.changePosition(newWidth, newHeight);
+                currPlayer.currentMap.changePosition(newWidth, newHeight);
                 notifyAllObservers();
                 return true;
             } catch (IndexNotFittingException e)
@@ -77,12 +74,12 @@ public class Controller extends ownUtil.Subject
 
     public TwoTouple getPosition()
     {
-        return currPlayer.currentmap.currentPos;
+        return currPlayer.currentMap.currentPos;
     }
 
     public String getObjectCurrMap(int w, int h)
     {
-        StageObjects mO = currPlayer.currentmap.specMapObject(w, h);
+        StageObjects mO = currPlayer.currentMap.specMapObject(w, h);
         if (mO == null)
             return "bounds";
         if (mO instanceof Player)

@@ -1,11 +1,10 @@
 import aview.Gui;
-import aview.Tui;
 import controller.Controller;
 import model.GameFrame;
 import model.Player;
 import ownUtil.IndexNotFittingException;
-import zmaps.Stage;
-import zmaps.Tree;
+import stageComponents.Stage;
+import stageComponents.Tree;
 
 import java.util.TreeMap;
 
@@ -36,13 +35,13 @@ public class Pokemon
 
         // TODO START MAP HERE CONFIGURED
         Player p1 = new Player(mapCollection.get("testStage1"));
-        Controller c1 = new Controller(gF, p1, Controller.state.move);
+        Controller c1 = new Controller(gF, p1);
         Gui g1 = new Gui(c1);
-        Tui t1 = new Tui(c1);
-        c1.attach(t1);
+        //Tui t1 = new Tui(c1);
+        //c1.attach(t1);
         c1.attach(g1);
         g1.GUI();
-        t1.TUI();
+        //t1.TUI();
 
     }
 

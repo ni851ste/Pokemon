@@ -1,4 +1,4 @@
-package zmaps;
+package stageComponents;
 
 public class Tree implements StageObjectsNotPassable
 {
