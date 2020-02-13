@@ -2,18 +2,18 @@ package controller;
 
 import model.GameFrame;
 import model.Player;
-import ownUtil.IndexNotFittingException;
-import ownUtil.Observer;
-import ownUtil.TwoTouple;
-import stageComponents.Free;
-import stageComponents.StageObjects;
-import stageComponents.Tree;
+import model.stage.stageComponents.Free;
+import model.stage.stageComponents.StageObjects;
+import model.stage.stageComponents.Tree;
+import util.TwoTouple;
+import util.observerPattern.Observer;
+import util.observerPattern.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Controller extends ownUtil.Subject
+public class Controller extends Subject
 {
     //public enum objects {bounds, free, player, highgrass, tree}
     private ControllerState controllerState;
@@ -58,15 +58,10 @@ public class Controller extends ownUtil.Subject
 
         if (currPlayer.currentMap.isMapBlockFree(newWidth, newHeight))
         {
-            try
-            {
-                currPlayer.currentMap.changePosition(newWidth, newHeight);
-                notifyAllObservers();
-                return true;
-            } catch (IndexNotFittingException e)
-            {
-                return false;
-            }
+            currPlayer.currentMap.changePosition(newWidth, newHeight);
+            notifyAllObservers();
+            return true;
+
         }
 
         return false;

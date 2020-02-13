@@ -1,7 +1,7 @@
 package aview;
 
 import controller.Controller;
-import ownUtil.Observer;
+import util.observerPattern.Observer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

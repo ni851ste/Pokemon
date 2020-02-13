@@ -2,9 +2,9 @@ import aview.Gui;
 import controller.Controller;
 import model.GameFrame;
 import model.Player;
+import model.stage.Stage;
+import model.stage.stageComponents.Tree;
 import ownUtil.IndexNotFittingException;
-import stageComponents.Stage;
-import stageComponents.Tree;
 
 import java.util.TreeMap;
 

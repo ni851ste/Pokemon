@@ -1,8 +1,12 @@
-package stageComponents;
+package model.stage;
 
 import model.Player;
-import ownUtil.IndexNotFittingException;
-import ownUtil.TwoTouple;
+import model.stage.stageComponents.Free;
+import model.stage.stageComponents.StageObjects;
+import model.stage.stageComponents.StageObjectsNotPassable;
+import model.stage.stageComponents.Tree;
+import util.exceptions.IndexNotFittingException;
+import util.TwoTouple;
 
 public class Stage
 {
@@ -12,13 +16,12 @@ public class Stage
     public Player player;
 
 
-    /**  Contructor for map
-            0: width INTEGER > 2
-            1: height INTEGER > 2
-            throws IndexNotFittingException
-            returns map with
-                IntTouple width height
-                boolean [][] with squareData */
+    /**
+     * Contructor for map
+     * 0: width INTEGER > 2
+     * 1: height INTEGER > 2
+     * throws IndexNotFittingException
+     */
     public Stage(int width, int height) throws IndexNotFittingException
     {
 
@@ -47,7 +50,6 @@ public class Stage
         }
     }
 
-
     public void changePosition(int widthPos, int heightPos) throws IndexNotFittingException
     {
         if (!isMapBlockInBounds(widthPos, heightPos))
@@ -58,37 +60,23 @@ public class Stage
     }
 
     /**
-    returns true if block on map is free
-    else returns false
-    */
+     * returns true if block on map is free
+     * else returns false
+     */
     public boolean isMapBlockFree(int w, int h)
     {
-        if (mapData[w][h] instanceof StageObjectsNotPassable)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !(mapData[w][h] instanceof StageObjectsNotPassable);
     }
 
     /**
-    checks if position is in bounds of map
-    returns true if it is
-    False if not
+     * checks if position is in bounds of map
+     * returns true if it is
+     * False if not
      */
     public boolean isMapBlockInBounds(int w, int h)
     {
-        if (w < 0 | w >= stageDimensions.get(0) |
-                h < 0 | h >= stageDimensions.get(1))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !(w < 0 | w >= stageDimensions.get(0) |
+                h < 0 | h >= stageDimensions.get(1));
     }
 
     public StageObjects specMapObject(int w, int h)

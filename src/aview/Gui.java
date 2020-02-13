@@ -1,8 +1,8 @@
 package aview;
 
 import controller.Controller;
-import ownUtil.Observer;
-import ownUtil.TwoTouple;
+import util.observerPattern.Observer;
+import util.TwoTouple;
 
 import javax.swing.*;
 import java.awt.*;

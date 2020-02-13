@@ -1,4 +1,4 @@
-package stageComponents;
+package model.stage.stageComponents;
 
 public class Free implements StageObjectsPassable
 {

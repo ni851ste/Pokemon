@@ -1,12 +1,12 @@
-package stageComponents;
+package model.stage.stageComponents;
 
 public interface StageObjects
 {
-    public enum objects
-    {}
+    void action();
     //free, highGrass, tree, building, person
 
 
-    public void action();
+    enum objects
+    {}
 
 }

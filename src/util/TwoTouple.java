@@ -1,4 +1,4 @@
-package ownUtil;
+package util;
 
 public class TwoTouple<T>
 {

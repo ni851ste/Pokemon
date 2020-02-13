@@ -1,7 +1,7 @@
 package model;
 
-import stageComponents.Stage;
-import stageComponents.StageObjects;
+import model.stage.Stage;
+import model.stage.stageComponents.StageObjects;
 
 public class Player implements StageObjects
 {

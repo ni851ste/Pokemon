@@ -1,6 +1,6 @@
 package model;
 
-import stageComponents.Stage;
+import model.stage.Stage;
 
 import java.util.TreeMap;
 
