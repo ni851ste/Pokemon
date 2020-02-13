@@ -1,28 +1,40 @@
 package controller;
-import model.*;
-import ownUtil.*;
-import zmaps.*;
+
+import model.GameFrame;
+import model.Player;
+import ownUtil.IndexNotFittingException;
+import ownUtil.Observer;
+import ownUtil.TwoTouple;
+import zmaps.Free;
+import zmaps.StageObjects;
+import zmaps.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class controller extends ownUtil.Subject {
-    public enum state {move, menu,  talk, fight}
+public class Controller extends ownUtil.Subject
+{
+    public enum state
+    {move, menu, talk, fight}
+
     //public enum objects {bounds, free, player, highgrass, tree}
     private state s;
-    private gameFrame gF;
-    private player currPlayer;
+    private GameFrame gF;
+    private Player currPlayer;
     private List<Observer> observers = new ArrayList<>();
 
-    public controller (gameFrame gF, player p, state s){
-         this.gF = gF;
-         this.currPlayer = p;
-         this.s = s;
+    public Controller(GameFrame gF, Player p, state s)
+    {
+        this.gF = gF;
+        this.currPlayer = p;
+        this.s = s;
     }
 
-    public boolean move (char direction){
-        if (!s.equals(state.move)){
+    public boolean move(char direction)
+    {
+        if (!s.equals(state.move))
+        {
             System.out.println("state failure");
             return false;
         }
@@ -30,7 +42,9 @@ public class controller extends ownUtil.Subject {
 
         newWidth = currPlayer.currentmap.currentPos.get(0);
         newHeight = currPlayer.currentmap.currentPos.get(1);
-        switch (direction){
+
+        switch (direction)
+        {
             case 'N':
                 ++newHeight;
                 break;
@@ -44,46 +58,56 @@ public class controller extends ownUtil.Subject {
                 ++newWidth;
                 break;
         }
-        if (currPlayer.currentmap.isMapBlockFree(newWidth, newHeight)) {
-            try {
+
+        if (currPlayer.currentmap.isMapBlockFree(newWidth, newHeight))
+        {
+            try
+            {
                 currPlayer.currentmap.changePosition(newWidth, newHeight);
                 notifyAllObservers();
                 return true;
-            } catch (IndexNotFittingException e) {
+            } catch (IndexNotFittingException e)
+            {
                 return false;
             }
         }
+
         return false;
     }
 
-    public intTouple getPosition(){
+    public TwoTouple getPosition()
+    {
         return currPlayer.currentmap.currentPos;
     }
 
-    public String getObjectCurrMap(int w, int h) {
-        mapObject mO = currPlayer.currentmap.specMapObject(w, h);
+    public String getObjectCurrMap(int w, int h)
+    {
+        StageObjects mO = currPlayer.currentmap.specMapObject(w, h);
         if (mO == null)
             return "bounds";
-        if (mO instanceof player)
+        if (mO instanceof Player)
             return "player";
-        if (mO instanceof free)
+        if (mO instanceof Free)
             return "free";
-        if (mO instanceof player)
+        if (mO instanceof Player)
             return "player";
-        if (mO instanceof tree)
+        if (mO instanceof Tree)
             return "tree";
         System.exit(2);
         return null;
     }
 
     @Override
-    public void attach(Observer observer) {
+    public void attach(Observer observer)
+    {
         observers.add(observer);
     }
 
     @Override
-    public void notifyAllObservers() {
-        for (Observer observer : observers) {
+    public void notifyAllObservers()
+    {
+        for (Observer observer : observers)
+        {
             observer.update();
         }
     }

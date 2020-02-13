@@ -1,8 +1,9 @@
 package ownUtil;
-import java.util.ArrayList;
+
 import java.util.List;
 
-public abstract class Subject {
+public abstract class Subject
+{
 
     List<Observer> observers;
 

@@ -1,5 +1,6 @@
 package ownUtil;
 
-public class IndexNotFittingException extends Exception {
+public class IndexNotFittingException extends Exception
+{
 
 }
