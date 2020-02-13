@@ -1,4 +1,4 @@
-package util.observerPattern;
+package main.util.observerPattern;
 
 public interface Observer
 {

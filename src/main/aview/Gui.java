@@ -1,8 +1,8 @@
-package aview;
+package main.aview;
 
-import controller.Controller;
-import util.observerPattern.Observer;
-import util.TwoTouple;
+import main.controller.Controller;
+import main.util.observerPattern.Observer;
+import main.util.TwoTouple;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,11 +32,11 @@ public class Gui implements Observer, KeyListener
         /*
         //Loading in the needed images
         try {
-            BufferedImage tree = ImageIO.read(new File("src\\artset\\tree64.png"));
-            BufferedImage bounds = ImageIO.read(new File("src\\artset\\bounds64.png"));
-            BufferedImage free = ImageIO.read(new File("src\\artset\\ground64.png"));
-            BufferedImage player = ImageIO.read(new File("src\\artset\\player64.png"));
-            //BufferedImage tree = ImageIO.read(new File("src\\artset\\tree64.png"));
+            BufferedImage tree = ImageIO.read(new File("src\\main.artset\\tree64.png"));
+            BufferedImage bounds = ImageIO.read(new File("src\\main.artset\\bounds64.png"));
+            BufferedImage free = ImageIO.read(new File("src\\main.artset\\ground64.png"));
+            BufferedImage player = ImageIO.read(new File("src\\main.artset\\player64.png"));
+            //BufferedImage tree = ImageIO.read(new File("src\\main.artset\\tree64.png"));
         } catch (IOException ex) {
             System.exit(1);
         }
@@ -51,7 +51,7 @@ public class Gui implements Observer, KeyListener
         mainFrame.setLayout(new GridLayout(blockHeight, blockWidth));
 
 
-        player = new JLabel(new ImageIcon("src\\artset\\player64.png"));
+        player = new JLabel(new ImageIcon("src\\main.artset\\player64.png"));
 
         mainFrame.addKeyListener(this);
 
@@ -101,16 +101,16 @@ public class Gui implements Observer, KeyListener
                 switch (controller.getObjectCurrMap(collums, rows))
                 {
                     case "bounds":
-                        this.mainFrame.add(new JLabel(new ImageIcon("src\\artset\\bounds64.png")));
+                        this.mainFrame.add(new JLabel(new ImageIcon("src\\main.artset\\bounds64.png")));
                         break;
                     case "free":
-                        this.mainFrame.add(new JLabel(new ImageIcon("src\\artset\\ground64.png")));
+                        this.mainFrame.add(new JLabel(new ImageIcon("src\\main.artset\\ground64.png")));
                         break;
                     case "player":
                         this.mainFrame.add(player);
                         break;
                     case "tree":
-                        this.mainFrame.add(new JLabel(new ImageIcon("src\\artset\\tree64.png")));
+                        this.mainFrame.add(new JLabel(new ImageIcon("src\\main.artset\\tree64.png")));
                         break;
                 }
             }

@@ -1,12 +1,12 @@
-package model.stage;
+package main.model.stage;
 
-import model.Player;
-import model.stage.stageComponents.Free;
-import model.stage.stageComponents.StageObjects;
-import model.stage.stageComponents.StageObjectsNotPassable;
-import model.stage.stageComponents.Tree;
-import util.exceptions.IndexNotFittingException;
-import util.TwoTouple;
+import main.model.Player;
+import main.model.stage.stageComponents.Free;
+import main.model.stage.stageComponents.StageObjects;
+import main.model.stage.stageComponents.StageObjectsNotPassable;
+import main.model.stage.stageComponents.Tree;
+import main.util.exceptions.IndexNotFittingException;
+import main.util.TwoTouple;
 
 public class Stage
 {

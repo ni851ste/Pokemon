@@ -1,7 +1,7 @@
-package util.factories;
+package main.util.factories;
 
-import model.stage.Stage;
-import model.stage.stageComponents.Tree;
+import main.model.stage.Stage;
+import main.model.stage.stageComponents.Tree;
 
 public class StageFactory
 {

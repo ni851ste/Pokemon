@@ -1,4 +1,4 @@
-package model.stage.stageComponents;
+package main.model.stage.stageComponents;
 
 public interface StageObjectsPassable extends StageObjects
 {

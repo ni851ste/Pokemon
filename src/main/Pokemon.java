@@ -1,9 +1,11 @@
-import aview.Gui;
-import controller.Controller;
-import model.GameFrame;
-import model.Player;
-import model.stage.Stage;
-import util.factories.StageFactory;
+package main;
+
+import main.aview.Gui;
+import main.controller.Controller;
+import main.model.GameFrame;
+import main.model.Player;
+import main.model.stage.Stage;
+import main.util.factories.StageFactory;
 
 import java.util.TreeMap;
 

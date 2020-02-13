@@ -1,13 +1,13 @@
-package controller;
+package main.controller;
 
-import model.GameFrame;
-import model.Player;
-import model.stage.stageComponents.Free;
-import model.stage.stageComponents.StageObjects;
-import model.stage.stageComponents.Tree;
-import util.TwoTouple;
-import util.observerPattern.Observer;
-import util.observerPattern.Subject;
+import main.model.GameFrame;
+import main.model.Player;
+import main.model.stage.stageComponents.Free;
+import main.model.stage.stageComponents.StageObjects;
+import main.model.stage.stageComponents.Tree;
+import main.util.TwoTouple;
+import main.util.observerPattern.Observer;
+import main.util.observerPattern.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
