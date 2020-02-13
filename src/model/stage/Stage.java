@@ -27,7 +27,7 @@ public class Stage
 
         if (width < 3 | height < 3)
         {
-            throw new IndexNotFittingException();
+            throw new IndexNotFittingException(String.format("Stage with width %d and height %d could not be created!", width, height));
         }
 
         this.stageDimensions = new TwoTouple<>(width, height);
@@ -54,7 +54,8 @@ public class Stage
     {
         if (!isMapBlockInBounds(widthPos, heightPos))
         {
-            throw new IndexNotFittingException();
+            // TODO What does it do?
+            throw new IndexNotFittingException("WHAT THE FUCK DOES THIS DO?????");
         }
         this.currentPos.change(widthPos, heightPos);
     }
