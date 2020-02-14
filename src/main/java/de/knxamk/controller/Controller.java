@@ -1,64 +1,79 @@
 package de.knxamk.controller;
 
-import de.knxamk.model.GameFrame;
 import de.knxamk.model.Player;
-import de.knxamk.model.stage.stageComponents.Free;
-import de.knxamk.model.stage.stageComponents.StageObject;
-import de.knxamk.model.stage.stageComponents.Tree;
+import de.knxamk.model.stage.Stage;
+import de.knxamk.model.stage.stageComponents.StageContent;
 import de.knxamk.util.TwoTouple;
 import de.knxamk.util.observerPattern.Observable;
-import de.knxamk.util.observerPattern.Observer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 
 public class Controller extends Observable
 {
-    //public enum objects {bounds, free, player, highgrass, tree}
-    private ControllerState controllerState;
-    private GameFrame gF;
-    private Player currPlayer;
-    private List<Observer> observers = new ArrayList<>();
+    public ControllerState controllerState;
+    private Player player;
+    private TwoTouple<Integer> playerPosition;
 
-    public Controller(GameFrame gF, Player p)
+    private Stage[] stages;
+    private Stage currentStage;
+
+    private Controller()
     {
-        this.gF = gF;
-        this.currPlayer = p;
         this.controllerState = ControllerState.MOVE;
+    }
+
+    private Controller(Player p, Stage[] stages)
+    {
+        this();
+        this.stages = stages;
+        this.player = p;
+    }
+
+    public Controller(Player p, Stage[] stages, Stage startStage)
+    {
+        this(p, stages);
+        this.currentStage = startStage;
+        this.playerPosition = new TwoTouple<>(startStage.width / 2, startStage.height / 2);
+    }
+
+    public Controller(Player p, Stage[] stages, int startStageIndex)
+    {
+        this(p, stages, stages[startStageIndex]);
     }
 
     public boolean move(char direction)
     {
         if (!controllerState.equals(ControllerState.MOVE))
         {
+            // TODO Log this and dont print this out
             System.out.println("state failure");
             return false;
         }
         int newWidth, newHeight;
 
-        newWidth = currPlayer.currentMap.currentPos.get(0);
-        newHeight = currPlayer.currentMap.currentPos.get(1);
+        newWidth = playerPosition.get(0);
+        newHeight = playerPosition.get(1);
 
         switch (direction)
         {
             case 'N':
                 ++newHeight;
                 break;
-            case 'W':
-                --newWidth;
+            case 'E':
+                ++newWidth;
                 break;
             case 'S':
                 --newHeight;
                 break;
-            case 'E':
-                ++newWidth;
+            case 'W':
+                --newWidth;
                 break;
         }
 
-        if (currPlayer.currentMap.isMapBlockFree(newWidth, newHeight))
+        if (currentStage.isBlockPassable(newWidth, newHeight))
         {
-            currPlayer.currentMap.changePosition(newWidth, newHeight);
+            playerPosition.change(newWidth, newHeight);
             notifyObservers();
             return true;
 
@@ -69,23 +84,23 @@ public class Controller extends Observable
 
     public TwoTouple<Integer> getPosition()
     {
-        return currPlayer.currentMap.currentPos;
+        return playerPosition;
     }
 
-    public String getObjectCurrMap(int w, int h)
+    /**
+     * This method returns the player on the playerPosition and not the ground underneath.
+     *
+     * @return
+     */
+    public String getStageContentAsStringWithCoord(int w, int h)
     {
-        StageObject mO = currPlayer.currentMap.specMapObject(w, h);
-        if (mO == null)
+        if (playerPosition.get(0) == w && playerPosition.get(1) == h)
+            return "player";
+
+        Optional<StageContent> optContent = currentStage.getStageContentWithCoord(w, h);
+
+        if (optContent.isEmpty())
             return "bounds";
-        if (mO instanceof Player)
-            return "player";
-        if (mO instanceof Free)
-            return "free";
-        if (mO instanceof Player)
-            return "player";
-        if (mO instanceof Tree)
-            return "tree";
-        System.exit(2);
-        return null;
+        return optContent.get().toString();
     }
 }

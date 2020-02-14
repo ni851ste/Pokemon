@@ -9,7 +9,9 @@ public class StageFactory
     private Stage createSmallTestStage()
     {
         Stage testStage = new Stage(5, 5);
-        testStage.mapData[1][1] = new Tree();
+
+        // TODO Find a way to edit maps or hardcode then for creation
+        //testStage.stageContent[1][1] = new Tree();
 
         return testStage;
     }
