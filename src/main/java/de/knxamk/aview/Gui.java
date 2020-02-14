@@ -100,7 +100,7 @@ public class Gui implements Observer, KeyListener
             for (int collums = currWidth - (blockWidth / 2); collums <= currWidth + (blockWidth / 2); collums++)
             {
 
-                switch (controller.getObjectCurrMap(collums, rows))
+                switch (controller.getStageContentWithCoord(collums, rows))
                 {
                     case "bounds":
                         this.mainFrame.add(new JLabel(new ImageIcon(getClass().getResource("/bounds64.png"))));

@@ -2,7 +2,6 @@ package de.knxamk.aview;
 
 import de.knxamk.controller.Controller;
 import de.knxamk.util.observerPattern.Observer;
-import de.knxamk.util.TwoTouple;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,7 +27,8 @@ public class Tui implements Observer
             {
                 System.out.println("\nType Here:");
                 String b = br.readLine();
-                processInput(b);
+                processInput(b.toLowerCase());
+                printStage();
             }
         } catch (Exception e)
         {
@@ -40,18 +40,32 @@ public class Tui implements Observer
     private void printPos()
     {
         System.out.println("X-Axis: " + controller.getPosition().get(0) +
-                "   Y-Axis: " + controller.getPosition().get(1));
+                "   Y-Axis: " + controller.getPosition().get(1) + "\n");
     }
 
     private void processInput(String input)
     {
+        if (input.equals("exit"))
+            System.exit(0);
+
+        switch (controller.controllerState)
+        {
+            case MOVE:
+                processInputMove(input);
+                break;
+
+            default:
+                System.out.println("Game state Error: Wrong state for given input!");
+
+        }
+
+
+    }
+
+    private void processInputMove(String input)
+    {
         switch (input)
         {
-            case "exit":
-                System.exit(0);
-            case "test":
-                System.out.println(input + "\n\n");
-                break;
             case "w":
                 System.out.println("north");
                 if (controller.move('N'))
@@ -96,14 +110,17 @@ public class Tui implements Observer
                     System.out.println("Move failed");
                 }
                 break;
-            case "position":
+            case "pos":
                 printPos();
                 break;
             default:
                 System.out.println("Wrong command");
         }
+    }
 
-
+    private void printStage()
+    {
+        //controller
     }
 
 

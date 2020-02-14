@@ -1,10 +1,15 @@
 package de.knxamk.model.stage.stageComponents;
 
-public class Tree implements StageObjectNotPassable
+public class Tree extends StageContentNotPassable
 {
 
-    @Override
     public void action()
     {
+    }
+
+    @Override
+    public String toString()
+    {
+        return "tree";
     }
 }

@@ -13,7 +13,9 @@ import java.util.TreeMap;
 
 public class Pokemon
 {
-    static TreeMap<String, Stage> mapCollection;
+
+    // TODO
+    //  Logger, Tests, mayB Exceptions
 
     public static void main(String[] args)
     {
@@ -21,11 +23,10 @@ public class Pokemon
 
         Stage[] testStages = stageFactory.createTestStages();
 
-        GameFrame gF = new GameFrame(mapCollection);
 
         // TODO START MAP HERE CONFIGURED
-        Player player = new Player(testStages[1]);
-        Controller controller = new Controller(gF, player);
+        Player player = new Player();
+        Controller controller = new Controller(player, testStages, 1);
         Gui gui = new Gui(controller);
         Tui tui = new Tui(controller);
 
