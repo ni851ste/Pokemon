@@ -6,14 +6,14 @@ import de.knxamk.model.stage.stageComponents.Free;
 import de.knxamk.model.stage.stageComponents.StageObject;
 import de.knxamk.model.stage.stageComponents.Tree;
 import de.knxamk.util.TwoTouple;
+import de.knxamk.util.observerPattern.Observable;
 import de.knxamk.util.observerPattern.Observer;
-import de.knxamk.util.observerPattern.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Controller extends Subject
+public class Controller extends Observable
 {
     //public enum objects {bounds, free, player, highgrass, tree}
     private ControllerState controllerState;
@@ -88,11 +88,4 @@ public class Controller extends Subject
         System.exit(2);
         return null;
     }
-
-    @Override
-    public void listenTo(Observer observer)
-    {
-        observers.add(observer);
-    }
-
 }
