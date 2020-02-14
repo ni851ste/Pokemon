@@ -1,6 +1,7 @@
 package de.knxamk.aview;
 
 import de.knxamk.controller.Controller;
+import de.knxamk.util.TwoTouple;
 import de.knxamk.util.observerPattern.Observer;
 
 import java.io.BufferedReader;
@@ -28,7 +29,6 @@ public class Tui implements Observer
                 System.out.println("\nType Here:");
                 String b = br.readLine();
                 processInput(b.toLowerCase());
-                printStage();
             }
         } catch (Exception e)
         {
@@ -52,6 +52,7 @@ public class Tui implements Observer
         {
             case MOVE:
                 processInputMove(input);
+                printStage();
                 break;
 
             default:
@@ -68,47 +69,19 @@ public class Tui implements Observer
         {
             case "w":
                 System.out.println("north");
-                if (controller.move('N'))
-                {
-                    System.out.println("Move successfull");
-                }
-                else
-                {
-                    System.out.println("Move failed");
-                }
+                initiateMove('N');
                 break;
             case "d":
                 System.out.println("east");
-                if (controller.move('E'))
-                {
-                    System.out.println("Move successfull");
-                }
-                else
-                {
-                    System.out.println("Move failed");
-                }
+                initiateMove('E');
                 break;
             case "s":
                 System.out.println("south");
-                if (controller.move('S'))
-                {
-                    System.out.println("Move successfull");
-                }
-                else
-                {
-                    System.out.println("Move failed");
-                }
+                initiateMove('S');
                 break;
             case "a":
                 System.out.println("west");
-                if (controller.move('W'))
-                {
-                    System.out.println("Move successfull");
-                }
-                else
-                {
-                    System.out.println("Move failed");
-                }
+                initiateMove('W');
                 break;
             case "pos":
                 printPos();
@@ -118,9 +91,27 @@ public class Tui implements Observer
         }
     }
 
+    private void initiateMove(char input)
+    {
+        if (controller.move(input))
+            System.out.println("Move successful");
+        else
+            System.out.println("Move failed");
+    }
+
     private void printStage()
     {
-        //controller
+        TwoTouple<Integer> playerPos = controller.getPosition();
+        for (int i = playerPos.get(1) + 2; i >= playerPos.get(1) - 2; i--)
+        {
+            System.out.printf("\t%s\t%s\t%s\t%s\t%s\n",
+                    controller.getStageContentAsStringWithCoord(playerPos.get(0) - 2, i),
+                    controller.getStageContentAsStringWithCoord(playerPos.get(0) - 1, i),
+                    controller.getStageContentAsStringWithCoord(playerPos.get(0), i),
+                    controller.getStageContentAsStringWithCoord(playerPos.get(0) + 1, i),
+                    controller.getStageContentAsStringWithCoord(playerPos.get(0) + 2, i)
+                    );
+        }
     }
 
 

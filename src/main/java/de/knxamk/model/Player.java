@@ -1,12 +1,6 @@
 package de.knxamk.model;
 
-import de.knxamk.model.stage.stageComponents.StageContent;
-
-public class Player implements StageContent
+public class Player
 {
 
-    @Override
-    public void action()
-    {
-    }
 }

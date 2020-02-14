@@ -92,7 +92,7 @@ public class Controller extends Observable
      *
      * @return
      */
-    public String getStageContentWithCoord(int w, int h)
+    public String getStageContentAsStringWithCoord(int w, int h)
     {
         if (playerPosition.get(0) == w && playerPosition.get(1) == h)
             return "player";
