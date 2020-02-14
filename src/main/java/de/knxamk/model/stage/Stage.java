@@ -2,8 +2,8 @@ package de.knxamk.model.stage;
 
 import de.knxamk.model.Player;
 import de.knxamk.model.stage.stageComponents.Free;
-import de.knxamk.model.stage.stageComponents.StageObjects;
-import de.knxamk.model.stage.stageComponents.StageObjectsNotPassable;
+import de.knxamk.model.stage.stageComponents.StageObject;
+import de.knxamk.model.stage.stageComponents.StageObjectNotPassable;
 import de.knxamk.model.stage.stageComponents.Tree;
 import de.knxamk.util.TwoTouple;
 import de.knxamk.util.exceptions.IndexNotFittingException;
@@ -11,7 +11,7 @@ import de.knxamk.util.exceptions.IndexNotFittingException;
 public class Stage
 {
     public TwoTouple<Integer> stageDimensions;
-    public StageObjects[][] mapData;
+    public StageObject[][] mapData;
     public TwoTouple<Integer> currentPos;
     public Player player;
 
@@ -31,7 +31,7 @@ public class Stage
         }
 
         this.stageDimensions = new TwoTouple<>(width, height);
-        this.mapData = new StageObjects[width][height];
+        this.mapData = new StageObject[width][height];
         this.currentPos = new TwoTouple<>(width / 2, height / 2);
 
         for (int i = 0; i < width; i++)
@@ -66,7 +66,7 @@ public class Stage
      */
     public boolean isMapBlockFree(int w, int h)
     {
-        return !(mapData[w][h] instanceof StageObjectsNotPassable);
+        return !(mapData[w][h] instanceof StageObjectNotPassable);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Stage
                 h < 0 | h >= stageDimensions.get(1));
     }
 
-    public StageObjects specMapObject(int w, int h)
+    public StageObject specMapObject(int w, int h)
     {
         if (!this.isMapBlockInBounds(w, h))
         {

@@ -2,6 +2,7 @@ package de.knxamk;
 
 
 import de.knxamk.aview.Gui;
+import de.knxamk.aview.Tui;
 import de.knxamk.controller.Controller;
 import de.knxamk.model.GameFrame;
 import de.knxamk.model.Player;
@@ -23,14 +24,14 @@ public class Pokemon
         GameFrame gF = new GameFrame(mapCollection);
 
         // TODO START MAP HERE CONFIGURED
-        Player p1 = new Player(testStages[0]);
-        Controller c1 = new Controller(gF, p1);
-        Gui g1 = new Gui(c1);
-        //Tui t1 = new Tui(c1);
-        //c1.attach(t1);
-        c1.attach(g1);
-        g1.GUI();
-        //t1.TUI();
+        Player player = new Player(testStages[0]);
+        Controller controller = new Controller(gF, player);
+        Gui gui = new Gui(controller);
+        Tui tui = new Tui(controller);
+        controller.listenTo(tui);
+        controller.listenTo(gui);
+        gui.GUI();
+        tui.TUI();
 
     }
 

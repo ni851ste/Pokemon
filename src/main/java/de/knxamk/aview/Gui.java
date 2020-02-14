@@ -94,6 +94,7 @@ public class Gui implements Observer, KeyListener
         TwoTouple<Integer> pos = new TwoTouple<>(controller.getPosition());
         int currWidth = pos.get(0);
         int currHeight = pos.get(1);
+
         for (int rows = currHeight + (blockHeight / 2); rows >= currHeight - (blockHeight / 2); rows--)
         {
             for (int collums = currWidth - (blockWidth / 2); collums <= currWidth + (blockWidth / 2); collums++)

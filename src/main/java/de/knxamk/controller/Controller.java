@@ -3,7 +3,7 @@ package de.knxamk.controller;
 import de.knxamk.model.GameFrame;
 import de.knxamk.model.Player;
 import de.knxamk.model.stage.stageComponents.Free;
-import de.knxamk.model.stage.stageComponents.StageObjects;
+import de.knxamk.model.stage.stageComponents.StageObject;
 import de.knxamk.model.stage.stageComponents.Tree;
 import de.knxamk.util.TwoTouple;
 import de.knxamk.util.observerPattern.Observer;
@@ -59,7 +59,7 @@ public class Controller extends Subject
         if (currPlayer.currentMap.isMapBlockFree(newWidth, newHeight))
         {
             currPlayer.currentMap.changePosition(newWidth, newHeight);
-            notifyAllObservers();
+            notifyObservers();
             return true;
 
         }
@@ -74,7 +74,7 @@ public class Controller extends Subject
 
     public String getObjectCurrMap(int w, int h)
     {
-        StageObjects mO = currPlayer.currentMap.specMapObject(w, h);
+        StageObject mO = currPlayer.currentMap.specMapObject(w, h);
         if (mO == null)
             return "bounds";
         if (mO instanceof Player)
@@ -90,17 +90,9 @@ public class Controller extends Subject
     }
 
     @Override
-    public void attach(Observer observer)
+    public void listenTo(Observer observer)
     {
         observers.add(observer);
     }
 
-    @Override
-    public void notifyAllObservers()
-    {
-        for (Observer observer : observers)
-        {
-            observer.update();
-        }
-    }
 }

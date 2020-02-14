@@ -7,7 +7,13 @@ public abstract class Subject
 
     List<Observer> observers;
 
-    public abstract void attach(Observer observer);
+    public abstract void listenTo(Observer observer);
 
-    public abstract void notifyAllObservers();
+    public void notifyObservers()
+    {
+        for (Observer observer : observers)
+        {
+            observer.update();
+        }
+    }
 }

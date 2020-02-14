@@ -1,6 +1,6 @@
 package de.knxamk.model.stage.stageComponents;
 
-public class Free implements StageObjectsPassable
+public class Free implements StageObjectPassable
 {
 
     @Override

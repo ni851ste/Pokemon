@@ -1,9 +1,9 @@
 package de.knxamk.model;
 
 import de.knxamk.model.stage.Stage;
-import de.knxamk.model.stage.stageComponents.StageObjects;
+import de.knxamk.model.stage.stageComponents.StageObject;
 
-public class Player implements StageObjects
+public class Player implements StageObject
 {
     public Stage currentMap = null;
 

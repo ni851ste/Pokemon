@@ -1,6 +1,6 @@
 package de.knxamk.model.stage.stageComponents;
 
-public interface StageObjectsPassable extends StageObjects
+public interface StageObjectPassable extends StageObject
 {
 
     @Override

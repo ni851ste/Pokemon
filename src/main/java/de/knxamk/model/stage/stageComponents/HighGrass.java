@@ -1,6 +1,6 @@
 package de.knxamk.model.stage.stageComponents;
 
-public class HighGrass implements StageObjectsPassable
+public class HighGrass implements StageObjectPassable
 {
 
     @Override

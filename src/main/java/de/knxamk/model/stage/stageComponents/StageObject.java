@@ -1,6 +1,6 @@
 package de.knxamk.model.stage.stageComponents;
 
-public interface StageObjects
+public interface StageObject
 {
     void action();
     //free, highGrass, tree, building, person
