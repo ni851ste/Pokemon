@@ -23,7 +23,6 @@ public class Pokemon
 
         GameFrame gF = new GameFrame(mapCollection);
 
-        // TODO START MAP HERE CONFIGURED
         Player player = new Player(testStages[1]);
         Controller controller = new Controller(gF, player);
         Gui gui = new Gui(controller);
