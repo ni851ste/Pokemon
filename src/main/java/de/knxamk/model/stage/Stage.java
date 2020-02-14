@@ -4,7 +4,6 @@ import de.knxamk.model.stage.stageComponents.Free;
 import de.knxamk.model.stage.stageComponents.StageContent;
 import de.knxamk.model.stage.stageComponents.StageContentNotPassable;
 import de.knxamk.model.stage.stageComponents.Tree;
-import de.knxamk.util.TwoTouple;
 import de.knxamk.util.exceptions.IndexNotFittingException;
 
 import java.util.Optional;
@@ -48,19 +47,6 @@ public class Stage
             }
         }
     }
-/*
-    public TwoTouple<Integer> changePosition(int widthPos, int heightPos) throws IndexNotFittingException
-    {
-        if (!isMapBlockInBounds(widthPos, heightPos))
-        {
-            // TODO What does it do?
-            throw new IndexNotFittingException("WHAT THE FUCK DOES THIS DO?????");
-        }
-        this.currentPos.change(widthPos, heightPos);
-    }
-
- */
-
 
     /**
      * returns true if block on map is free
@@ -71,12 +57,7 @@ public class Stage
         return !(stageContent[w][h] instanceof StageContentNotPassable);
     }
 
-    /**
-     * checks if position is in bounds of map
-     * returns true if it is
-     * False if not
-     */
-    public boolean isMapBlockInBounds(int w, int h)
+    private boolean areCoordInBounds(int w, int h)
     {
         return !(w < 0 | w >= width |
                 h < 0 | h >= height);
@@ -84,7 +65,7 @@ public class Stage
 
     public Optional<StageContent> getStageContentWithCoord(int w, int h)
     {
-        if (!this.isMapBlockInBounds(w, h))
+        if (!this.areCoordInBounds(w, h))
         {
             return Optional.empty();
         }

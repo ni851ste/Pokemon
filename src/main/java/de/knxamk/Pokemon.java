@@ -15,7 +15,7 @@ public class Pokemon
 {
 
     // TODO
-    //  Logger, Tests, mayB Exceptions
+    //  Logger, Tests with Mockito, mayB Exceptions
 
     public static void main(String[] args)
     {

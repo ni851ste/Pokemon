@@ -31,3 +31,6 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
+Pokemon.iml
+Pokemon_Idea_Project.iml
+
