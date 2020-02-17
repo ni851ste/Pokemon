@@ -103,7 +103,7 @@ public class Gui implements Observer, KeyListener
                 switch (controller.getStageContentAsStringWithCoord(collums, rows))
                 {
                     case "bounds":
-                        this.mainFrame.add(new JLabel(new ImageIcon(getClass().getResource("/bounds64.png"))));
+                        this.mainFrame.add(new JLabel(new ImageIcon(getClass().getResource("/noTexture64.png"))));
                         break;
                     case "free":
                         this.mainFrame.add(new JLabel(new ImageIcon(getClass().getResource("/ground64.png"))));

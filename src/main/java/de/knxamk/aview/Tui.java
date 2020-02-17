@@ -7,6 +7,8 @@ import de.knxamk.util.observerPattern.Observer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import static de.knxamk.util.ConsoleAnsiColorCodes.*;
+
 
 public class Tui implements Observer
 {
@@ -86,6 +88,9 @@ public class Tui implements Observer
             case "pos":
                 printPos();
                 break;
+            case "json":
+                System.out.println(controller.toJson());
+                break;
             default:
                 System.out.println("Wrong command");
         }
@@ -94,9 +99,9 @@ public class Tui implements Observer
     private void initiateMove(char input)
     {
         if (controller.move(input))
-            System.out.println("Move successful");
+            System.out.println(ANSI_GREEN + "Move successful" + ANSI_RESET);
         else
-            System.out.println("Move failed");
+            System.out.println(ANSI_RED + "Move failed" + ANSI_RESET);
     }
 
     private void printStage()
@@ -105,12 +110,32 @@ public class Tui implements Observer
         for (int i = playerPos.get(1) + 2; i >= playerPos.get(1) - 2; i--)
         {
             System.out.printf("\t%s\t%s\t%s\t%s\t%s\n",
-                    controller.getStageContentAsStringWithCoord(playerPos.get(0) - 2, i),
-                    controller.getStageContentAsStringWithCoord(playerPos.get(0) - 1, i),
-                    controller.getStageContentAsStringWithCoord(playerPos.get(0), i),
-                    controller.getStageContentAsStringWithCoord(playerPos.get(0) + 1, i),
-                    controller.getStageContentAsStringWithCoord(playerPos.get(0) + 2, i)
-                    );
+                    this.getStageContentAsStringWithCoordAndAnsiColor(playerPos.get(0) - 2, i),
+                    this.getStageContentAsStringWithCoordAndAnsiColor(playerPos.get(0) - 1, i),
+                    this.getStageContentAsStringWithCoordAndAnsiColor(playerPos.get(0), i),
+                    this.getStageContentAsStringWithCoordAndAnsiColor(playerPos.get(0) + 1, i),
+                    this.getStageContentAsStringWithCoordAndAnsiColor(playerPos.get(0) + 2, i)
+            );
+        }
+    }
+
+
+    private String getStageContentAsStringWithCoordAndAnsiColor(int w, int h)
+    {
+        String stageContent = controller.getStageContentAsStringWithCoord(w, h);
+
+        switch (stageContent)
+        {
+            case "player":
+                return ANSI_YELLOW_BACKGROUND + ANSI_BLACK + stageContent + ANSI_RESET;
+            case "bounds":
+                return ANSI_BLACK_BACKGROUND + ANSI_WHITE + stageContent + ANSI_RESET;
+            case "free":
+                return ANSI_PURPLE_BACKGROUND + ANSI_BLACK + stageContent + ANSI_RESET;
+            case "tree":
+                return ANSI_GREEN_BACKGROUND + ANSI_BLACK + stageContent + ANSI_RESET;
+            default:
+                return "";
         }
     }
 
