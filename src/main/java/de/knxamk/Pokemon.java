@@ -4,12 +4,9 @@ package de.knxamk;
 import de.knxamk.aview.Gui;
 import de.knxamk.aview.Tui;
 import de.knxamk.controller.Controller;
-import de.knxamk.model.GameFrame;
 import de.knxamk.model.Player;
 import de.knxamk.model.stage.Stage;
 import de.knxamk.util.factories.StageFactory;
-
-import java.util.TreeMap;
 
 public class Pokemon
 {
@@ -33,8 +30,8 @@ public class Pokemon
         controller.addListener(tui);
         controller.addListener(gui);
 
-        gui.GUI();
-        tui.TUI();
+        gui.startGui();
+        tui.startTui();
 
     }
 

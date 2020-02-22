@@ -26,7 +26,7 @@ public class Gui implements Observer, KeyListener
         this.controller = c;
     }
 
-    public void GUI()
+    public void startGui()
     {
 
 

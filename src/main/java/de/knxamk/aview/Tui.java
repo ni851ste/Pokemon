@@ -20,7 +20,7 @@ public class Tui implements Observer
     }
 
 
-    public void TUI()
+    public void startTui()
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try
