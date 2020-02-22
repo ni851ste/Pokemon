@@ -3,7 +3,8 @@ package de.knxamk.model.stage.stageComponents;
 public class Free extends StageContentPassable
 {
 
-    @Override
+    String segmentName = "free";
+
     public void action()
     {
     }
@@ -11,6 +12,6 @@ public class Free extends StageContentPassable
     @Override
     public String toString()
     {
-        return "free";
+        return segmentName;
     }
 }
