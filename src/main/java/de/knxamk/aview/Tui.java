@@ -5,6 +5,7 @@ import de.knxamk.util.TwoTouple;
 import de.knxamk.util.observerPattern.Observer;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static de.knxamk.util.ConsoleAnsiColorCodes.*;
@@ -26,23 +27,18 @@ public class Tui implements Observer
         try
         {
             printPos();
+            printStage();
             while (true)
             {
                 System.out.println("\nType Here:");
                 String b = br.readLine();
                 processInput(b.toLowerCase());
             }
-        } catch (Exception e)
+        } catch (IOException e)
         {
             System.out.println("Fehler:" + e);
             System.exit(1);
         }
-    }
-
-    private void printPos()
-    {
-        System.out.println("X-Axis: " + controller.getPosition().get(0) +
-                "   Y-Axis: " + controller.getPosition().get(1) + "\n");
     }
 
     private void processInput(String input)
@@ -58,11 +54,8 @@ public class Tui implements Observer
                 break;
 
             default:
-                System.out.println("Game state Error: Wrong state for given input!");
-
+                throw new RuntimeException("Game state Error: Wrong state for given input!");
         }
-
-
     }
 
     private void processInputMove(String input)
@@ -91,8 +84,11 @@ public class Tui implements Observer
             case "json":
                 System.out.println(controller.toJson());
                 break;
+            case "help":
+                System.out.println(getTuiCommands());
+                break;
             default:
-                System.out.println("Wrong command");
+                System.out.println(ANSI_RED + "Unknown Command\nTry one of those:\n" + ANSI_RESET + getTuiCommands());
         }
     }
 
@@ -102,6 +98,12 @@ public class Tui implements Observer
             System.out.println(ANSI_GREEN + "Move successful" + ANSI_RESET);
         else
             System.out.println(ANSI_RED + "Move failed" + ANSI_RESET);
+    }
+
+    private void printPos()
+    {
+        System.out.println("X-Axis: " + controller.getPosition().get(0) +
+                "   Y-Axis: " + controller.getPosition().get(1) + "\n");
     }
 
     private void printStage()
@@ -118,7 +120,6 @@ public class Tui implements Observer
             );
         }
     }
-
 
     private String getStageContentAsStringWithCoordAndAnsiColor(int w, int h)
     {
@@ -138,6 +139,18 @@ public class Tui implements Observer
                 return "";
         }
     }
+
+    private String getTuiCommands()
+    {
+        return ANSI_GREEN +
+                "\tw\t\tMove north\n" +
+                "\td\t\tMove east\n" +
+                "\ts\t\tMove south\n" +
+                "\ta\t\tMove west\n" +
+                "\tpos\t\tGive current position\n" +
+                "\tjson\tController and Model as JSON\n" + ANSI_RESET;
+    }
+
 
 
     @Override

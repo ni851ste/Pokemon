@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Observable
 {
-    List<Observer> subscribers = new ArrayList<Observer>();
+    transient List<Observer> subscribers = new ArrayList<>();
 
     public void addListener(Observer s)
     {

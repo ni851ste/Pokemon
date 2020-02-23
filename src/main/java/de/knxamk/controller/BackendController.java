@@ -1,5 +1,6 @@
 package de.knxamk.controller;
 
+import com.google.gson.Gson;
 import de.knxamk.model.Player;
 import de.knxamk.model.stage.Stage;
 import de.knxamk.model.stage.stageComponents.StageContent;
@@ -52,6 +53,7 @@ public class BackendController extends Observable
 
     public boolean move(char direction)
     {
+
         if (!controllerState.equals(ControllerState.MOVE))
         {
             // TODO Log this and dont print this out
@@ -84,7 +86,6 @@ public class BackendController extends Observable
             playerPosition.change(newWidth, newHeight);
             notifyObservers();
             return true;
-
         }
 
         return false;
@@ -97,8 +98,6 @@ public class BackendController extends Observable
 
     /**
      * This method returns the player on the playerPosition and not the ground underneath.
-     *
-     * @return
      */
     public String getStageContentAsStringWithCoord(int w, int h)
     {
@@ -110,5 +109,11 @@ public class BackendController extends Observable
         if (optContent.isEmpty())
             return "bounds";
         return optContent.get().toString();
+    }
+
+
+    public String toJson()
+    {
+        return new Gson().toJson(this);
     }
 }

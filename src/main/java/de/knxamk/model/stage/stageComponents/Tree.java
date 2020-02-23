@@ -3,6 +3,8 @@ package de.knxamk.model.stage.stageComponents;
 public class Tree extends StageContentNotPassable
 {
 
+    String segmentName = "tree";
+
     public void action()
     {
     }
@@ -10,6 +12,6 @@ public class Tree extends StageContentNotPassable
     @Override
     public String toString()
     {
-        return "tree";
+        return segmentName;
     }
 }
