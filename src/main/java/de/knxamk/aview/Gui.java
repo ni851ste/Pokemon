@@ -1,7 +1,7 @@
 package de.knxamk.aview;
 
 
-import de.knxamk.controller.Controller;
+import de.knxamk.controller.BackendController;
 import de.knxamk.util.TwoTouple;
 import de.knxamk.util.observerPattern.Observer;
 
@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 
 public class Gui implements Observer, KeyListener
 {
-    private Controller controller;
+    private BackendController controller;
     private int blockWidth = 11;
     private int blockHeight = 7;
 
@@ -21,7 +21,7 @@ public class Gui implements Observer, KeyListener
 
     private JLabel player;
 
-    public Gui(Controller c)
+    public Gui(BackendController c)
     {
         this.controller = c;
     }

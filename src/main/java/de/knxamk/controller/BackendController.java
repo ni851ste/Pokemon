@@ -9,7 +9,7 @@ import de.knxamk.util.observerPattern.Observable;
 import java.util.Optional;
 
 
-public class Controller extends Observable
+public class BackendController extends Observable
 {
     public ControllerState controllerState;
     private Player player;
@@ -18,28 +18,36 @@ public class Controller extends Observable
     private Stage[] stages;
     private Stage currentStage;
 
-    private Controller()
+    private BackendController()
     {
         this.controllerState = ControllerState.MOVE;
     }
 
-    private Controller(Player p, Stage[] stages)
+    private BackendController(Player p, Stage[] stages)
     {
         this();
         this.stages = stages;
         this.player = p;
     }
 
-    public Controller(Player p, Stage[] stages, Stage startStage)
+    public BackendController(Player p, Stage[] stages, Stage startStage)
     {
         this(p, stages);
         this.currentStage = startStage;
         this.playerPosition = new TwoTouple<>(startStage.width / 2, startStage.height / 2);
     }
 
-    public Controller(Player p, Stage[] stages, int startStageIndex)
+    public BackendController(Player p, Stage[] stages, int startStageIndex)
     {
         this(p, stages, stages[startStageIndex]);
+    }
+
+    public BackendController(Stage startStage)
+    {
+        this.player = new Player();
+        this.currentStage = startStage;
+        this.playerPosition = new TwoTouple<>(startStage.width / 2, startStage.height / 2);
+        this.controllerState = ControllerState.MOVE;
     }
 
     public boolean move(char direction)

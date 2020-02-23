@@ -1,6 +1,6 @@
 package de.knxamk.aview;
 
-import de.knxamk.controller.Controller;
+import de.knxamk.controller.BackendController;
 import de.knxamk.util.TwoTouple;
 import de.knxamk.util.observerPattern.Observer;
 
@@ -12,9 +12,9 @@ import static de.knxamk.util.ConsoleAnsiColorCodes.*;
 
 public class Tui implements Observer
 {
-    private Controller controller;
+    private BackendController controller;
 
-    public Tui(Controller c)
+    public Tui(BackendController c)
     {
         this.controller = c;
     }

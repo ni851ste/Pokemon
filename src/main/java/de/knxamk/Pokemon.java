@@ -3,7 +3,7 @@ package de.knxamk;
 
 import de.knxamk.aview.Gui;
 import de.knxamk.aview.Tui;
-import de.knxamk.controller.Controller;
+import de.knxamk.controller.BackendController;
 import de.knxamk.model.Player;
 import de.knxamk.model.stage.Stage;
 import de.knxamk.util.factories.StageFactory;
@@ -23,7 +23,7 @@ public class Pokemon
 
         // TODO START MAP HERE CONFIGURED
         Player player = new Player();
-        Controller controller = new Controller(player, testStages, 1);
+        BackendController controller = new BackendController(player, testStages, 1);
         Gui gui = new Gui(controller);
         Tui tui = new Tui(controller);
 

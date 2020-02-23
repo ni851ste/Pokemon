@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ControllerTest
+public class BackendControllerTest
 {
     @Test
     public void creatingAControllerShouldCreateACorrectController()
@@ -18,8 +18,8 @@ public class ControllerTest
 
         Player p = new Player();
 
-        Controller controller1 = new Controller(p, testStages, testStage);
-        Controller controller2 = new Controller(p, testStages, 0);
+        BackendController controller1 = new BackendController(p, testStages, testStage);
+        BackendController controller2 = new BackendController(p, testStages, 0);
 
         assertEquals(controller1.controllerState, ControllerState.MOVE);
 
@@ -35,7 +35,7 @@ public class ControllerTest
         Stage[] testStages = new Stage[1];
         testStages[0] = testStage;
 
-        Controller testController = new Controller(new Player(), testStages, 0);
+        BackendController testController = new BackendController(new Player(), testStages, 0);
         Integer previousHeightCoord = testController.getPosition().get(1);
 
         assertTrue(testController.move('N'));
@@ -52,7 +52,7 @@ public class ControllerTest
         Stage[] testStages = new Stage[1];
         testStages[0] = testStage;
 
-        Controller testController = new Controller(new Player(), testStages, 0);
+        BackendController testController = new BackendController(new Player(), testStages, 0);
         assertFalse(testController.move('N'));
     }
 
@@ -63,7 +63,7 @@ public class ControllerTest
         Stage[] testStages = new Stage[1];
         testStages[0] = testStage;
 
-        Controller testController = new Controller(new Player(), testStages, 0);
+        BackendController testController = new BackendController(new Player(), testStages, 0);
 
         assertEquals("player", testController.getStageContentAsStringWithCoord(2, 2));
         assertEquals("bounds", testController.getStageContentAsStringWithCoord(-1, -1));
